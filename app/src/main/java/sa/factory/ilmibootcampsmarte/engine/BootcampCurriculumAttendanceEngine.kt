@@ -14,7 +14,9 @@ data class BootcampStudent(
     val completedModules: Int,
     val gpaScore: Double,
     val isCapstoneApproved: Boolean = false
-)
+) {
+    val id: String get() = studentId
+}
 
 data class BeaconAttendanceRecord(
     val recordId: String,
@@ -43,7 +45,7 @@ class BootcampCurriculumAttendanceEngine {
     fun getStudents(): List<BootcampStudent> = students.toList()
     fun getAttendanceRecords(): List<BeaconAttendanceRecord> = attendanceLog.toList()
 
-    fun findStudentById(id: String): BootcampStudent? = students.find { it.id == id }
+    fun findStudentById(id: String): BootcampStudent? = students.find { it.studentId == id || it.id == id }
 
     fun verifyAndCheckIn(
         studentId: String,
